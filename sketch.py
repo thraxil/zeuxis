@@ -6,7 +6,7 @@ import random
 import time
 import Image, ImageOps, ImageDraw
 
-from pygame.locals import *
+#from pygame.locals import *
 
 
 RED    = (255,0,0)
