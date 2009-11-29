@@ -28,7 +28,7 @@ def clear():
 
 
 class App:
-    def __init__(self):
+    def __init__(self,seconds,images=None):
         self.counter = 0
 
         self.current_image = None
@@ -37,10 +37,15 @@ class App:
         self.grayscale = False
 
         self.gridlines = 0
+        self.seconds = seconds
+        if images is None:
+            self.images = []
+        else:
+            self.images = images
 
     def display(self):
         clear()
-        im = Image.open(images[random.randint(0, len(images) - 1)])
+        im = Image.open(self.images[random.randint(0, len(self.images) - 1)])
         mode = im.mode
         im.thumbnail(screen.get_size(),Image.ANTIALIAS)
         assert mode in "RGB", "RGBA"
@@ -54,7 +59,7 @@ class App:
         # display a different image
         self.display()
         # start the timer over fresh
-        pygame.time.set_timer(SWITCH,1000 * seconds)
+        pygame.time.set_timer(SWITCH,1000 * self.seconds)
 
     def input(self,events):
         for event in events: 
@@ -81,15 +86,15 @@ class App:
         background = background.convert()
         color = white
 
-        if (seconds - self.counter) < 10:
+        if (self.seconds - self.counter) < 10:
             color = yellow
-        if (seconds - self.counter) < 7:
+        if (self.seconds - self.counter) < 7:
             color = orange
-        if (seconds - self.counter) < 3:
+        if (self.seconds - self.counter) < 3:
             color = red
         background.fill(color)
         font = pygame.font.Font(None, 36)
-        text = font.render(str(seconds - self.counter), 1, (10, 10, 10))
+        text = font.render(str(self.seconds - self.counter), 1, (10, 10, 10))
 
         (sw,sh) = screen.get_size()
         screen.blit(background, (sw - 100,sh - 50))
@@ -164,12 +169,12 @@ if __name__ ==  "__main__":
     pygame.mouse.set_visible(False)
 
     seconds = int(sys.argv[1])
-    images = sys.argv[2:]
+    
     clock = pygame.time.Clock()
     pygame.time.set_timer(SWITCH,1000 * seconds)
     pygame.time.set_timer(TICK,1000)
 
-    app = App()
+    app = App(seconds,images=sys.argv[2:])
     app.display()
 
     while True:
