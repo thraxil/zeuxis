@@ -9,11 +9,11 @@ import Image, ImageOps, ImageDraw
 from pygame.locals import *
 
 
-red    = (255,0,0)
-black  = (0,0,0)
-white  = (255,255,255)
-orange = (255,128,0)
-yellow = (255,255,0)
+RED    = (255,0,0)
+BLACK  = (0,0,0)
+WHITE  = (255,255,255)
+ORANGE = (255,128,0)
+YELLOW = (255,255,0)
 
 SWITCH  = 10
 TICK    = 11
@@ -21,8 +21,7 @@ TICK    = 11
 def clear():
     background = pygame.Surface(screen.get_size())
     background = background.convert()
-    color = black
-    background.fill(color)
+    background.fill(BLACK)
     screen.blit(background, (0,0))
     pygame.display.flip()
 
@@ -36,7 +35,7 @@ class App:
         self.posterize_bits = 4
         self.grayscale = False
 
-        self.gridlines = 0
+        self.gridlines = 1
         self.seconds = seconds
         if images is None:
             self.images = []
@@ -84,14 +83,14 @@ class App:
     def tick(self):
         background = pygame.Surface((100,50))
         background = background.convert()
-        color = white
+        color = WHITE
 
         if (self.seconds - self.counter) < 10:
-            color = yellow
+            color = YELLOW
         if (self.seconds - self.counter) < 7:
-            color = orange
+            color = ORANGE
         if (self.seconds - self.counter) < 3:
-            color = red
+            color = RED
         background.fill(color)
         font = pygame.font.Font(None, 36)
         text = font.render(str(self.seconds - self.counter), 1, (10, 10, 10))
