@@ -6,8 +6,7 @@ import random
 import time
 import Image, ImageOps, ImageDraw
 
-#from pygame.locals import *
-
+import pygame.locals
 
 RED    = (255,0,0)
 BLACK  = (0,0,0)
@@ -62,18 +61,18 @@ class App:
 
     def input(self,events):
         for event in events: 
-            if event.type == QUIT: 
+            if event.type == pygame.locals.QUIT: 
                 sys.exit(0) 
             else:
-                if event.type == KEYDOWN and event.key == ord('q'):
+                if event.type == pygame.locals.KEYDOWN and event.key == ord('q'):
                     sys.exit(0)
-                if event.type == KEYDOWN and event.key == ord('s'):
+                if event.type == pygame.locals.KEYDOWN and event.key == ord('s'):
                     self.skip()
-                if event.type == KEYDOWN and event.key == ord('p'):
+                if event.type == pygame.locals.KEYDOWN and event.key == ord('p'):
                     self.posterize()
-                if event.type == KEYDOWN and event.key == ord('g'):
+                if event.type == pygame.locals.KEYDOWN and event.key == ord('g'):
                     self.make_grayscale()
-                if event.type == KEYDOWN and event.key == ord('l'):
+                if event.type == pygame.locals.KEYDOWN and event.key == ord('l'):
                     self.grid()                                
                 if event.type == SWITCH:
                     self.display()
