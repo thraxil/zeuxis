@@ -45,6 +45,11 @@ Installation requirements:
 
 Current Issues (patches welcome):
 
+  * Port to other platforms. I only run Ubuntu, so that's all I've
+    tested it on. Python and Pygame are available elsewhere though so
+    there's no reason it shouldn't work; I just don't have the
+    bandwidth to do it.
+  * Friendlier UI/commandline parsing. 
   * only handles Atom feeds of a pretty narrow flavor, with fullsize
     images as enclosures on the entries. In particular, I don't yet
     have it working with Flickr's RSS feeds (you currently have to
