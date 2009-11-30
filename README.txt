@@ -11,14 +11,14 @@ for that pose.
 
 Basic Example Usage:
 
- % sketch.py 300 ~/images/poses/*.jpg 
+ % zeuthis.py 300 ~/images/poses/*.jpg 
 
 That will tell it to draw random images from your "~/images/poses/"
 directory and do 5 minute (300 seconds) poses. Hit 'q' to exit. 
 
 To pull images from an Atom feed:
 
- % sketch.py 300 -u 'http://api.flickr.com/services/feeds/photos_public.gne?tags=turtle&lang=en-us&format=atom'
+ % zeuthis.py 300 -u 'http://api.flickr.com/services/feeds/photos_public.gne?tags=turtle&lang=en-us&format=atom'
 
 That will do 5 minute poses of public photos on flickr with the
 'turtle' flag. (Hey, I like drawing turtles). 
@@ -72,4 +72,4 @@ Current Issues (patches welcome):
   * I guess a non-fullscreen mode might be useful to some people. 
   * I wish I knew how to disable screensavers and monitor power-saving
     mode while it's on.
-  * Also, it really needs a better name than 'sketch.py'. Please.
+
