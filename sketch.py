@@ -7,6 +7,9 @@ import time
 import Image, ImageOps, ImageDraw
 
 import pygame.locals
+import feedparser
+import urllib
+import cStringIO
 
 RED    = (255,0,0)
 BLACK  = (0,0,0)
@@ -26,7 +29,7 @@ def clear():
 
 
 class App:
-    def __init__(self,seconds,images=None):
+    def __init__(self,seconds,images=None,url=None):
         self.counter = 0
 
         self.current_image = None
@@ -40,13 +43,31 @@ class App:
             self.images = []
         else:
             self.images = images
+        self.url = url
+        self.get_images_from_feed()
+
+    def get_images_from_feed(self):
+        if self.url is None:
+            return # never mind
+        d = feedparser.parse(self.url)
+        try:
+            self.images =  [e['enclosures'][0]['href'] for e in d['entries']]
+        except:
+            print str(d['entries'])
 
     def display(self):
         clear()
-        im = Image.open(self.images[random.randint(0, len(self.images) - 1)])
+        randimg = self.images[random.randint(0, len(self.images) - 1)]
+        if self.url is None:
+            im = Image.open(randimg)
+        else:
+            # we expect them to be urls
+            cs = cStringIO.StringIO()
+            cs.write(urllib.urlopen(randimg).read())
+            cs.seek(0)
+            im = Image.open(cs)
         mode = im.mode
         im.thumbnail(screen.get_size(),Image.ANTIALIAS)
-        assert mode in "RGB", "RGBA"
         self.current_image = im
         self.render(im)
         self.counter = 0
@@ -167,12 +188,16 @@ if __name__ ==  "__main__":
     pygame.mouse.set_visible(False)
 
     seconds = int(sys.argv[1])
+    urlflag = (sys.argv[2])
+    url = None
+    if urlflag == "-u":
+        url = sys.argv[3]
     
     clock = pygame.time.Clock()
     pygame.time.set_timer(SWITCH,1000 * seconds)
     pygame.time.set_timer(TICK,1000)
 
-    app = App(seconds,images=sys.argv[2:])
+    app = App(seconds,url=url,images=sys.argv[2:])
     app.display()
 
     while True:
