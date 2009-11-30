@@ -67,3 +67,4 @@ Current Issues (patches welcome):
   * I guess a non-fullscreen mode might be useful to some people. 
   * I wish I knew how to disable screensavers and monitor power-saving
     mode while it's on.
+  * Also, it really needs a better name than 'sketch.py'. Please.
