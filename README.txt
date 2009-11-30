@@ -40,7 +40,7 @@ one.
 
 Installation requirements:
 
-  * pygame      (ubuntu: sudo aptitude install python-pgame)
+  * pygame      (ubuntu: sudo aptitude install python-pygame)
   * feedparser  (ubuntu: sudo aptitude install python-feedparser)
 
 Current Issues (patches welcome):
