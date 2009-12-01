@@ -11,14 +11,14 @@ for that pose.
 
 Basic Example Usage:
 
- % zeuthis.py 300 ~/images/poses/*.jpg 
+ % zeuxis.py 300 ~/images/poses/*.jpg 
 
 That will tell it to draw random images from your "~/images/poses/"
 directory and do 5 minute (300 seconds) poses. Hit 'q' to exit. 
 
 To pull images from an Atom feed:
 
- % zeuthis.py 300 -u 'http://api.flickr.com/services/feeds/photos_public.gne?tags=turtle&lang=en-us&format=atom'
+ % zeuxis.py 300 -u 'http://api.flickr.com/services/feeds/photos_public.gne?tags=turtle&lang=en-us&format=atom'
 
 That will do 5 minute poses of public photos on flickr with the
 'turtle' flag. (Hey, I like drawing turtles). 
