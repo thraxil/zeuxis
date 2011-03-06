@@ -183,7 +183,7 @@ def segment(t,n):
 if __name__ ==  "__main__":
     pygame.init()
     window = pygame.display.set_mode(pygame.display.list_modes()[0])
-    pygame.display.toggle_fullscreen()
+#    pygame.display.toggle_fullscreen()
     screen = pygame.display.get_surface()
     pygame.mouse.set_visible(False)
 
